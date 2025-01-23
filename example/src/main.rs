@@ -68,11 +68,14 @@ async fn main() {
 
     // POST /swap-instructions
     let swap_instructions = jupiter_swap_api_client
-        .swap_instructions(&SwapRequest {
-            user_public_key: TEST_WALLET,
-            quote_response,
-            config: TransactionConfig::default(),
-        })
+        .swap_instructions(
+            &SwapRequest {
+                user_public_key: TEST_WALLET,
+                quote_response,
+                config: TransactionConfig::default(),
+            },
+            None,
+        )
         .await
         .unwrap();
     println!("swap_instructions: {swap_instructions:?}");

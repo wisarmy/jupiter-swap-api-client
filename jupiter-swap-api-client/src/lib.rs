@@ -82,9 +82,11 @@ impl JupiterSwapApiClient {
     pub async fn swap_instructions(
         &self,
         swap_request: &SwapRequest,
+        extra_args: Option<HashMap<String, String>>,
     ) -> Result<SwapInstructionsResponse, ClientError> {
         let response = Client::new()
             .post(format!("{}/swap-instructions", self.base_path))
+            .query(&extra_args)
             .json(swap_request)
             .send()
             .await?;
